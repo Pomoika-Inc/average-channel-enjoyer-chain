@@ -1,11 +1,11 @@
 import { toNano } from '@ton/core';
-import { AceMiner } from '../wrappers/AceMiner';
+import { AceMinter } from '../wrappers/AceMinter';
 import { NetworkProvider } from '@ton/blueprint';
 
 export async function run(provider: NetworkProvider) {
-    const aceMiner = provider.open(await AceMiner.fromInit());
+    const aceMinter = provider.open(await AceMinter.fromInit());
 
-    await aceMiner.send(
+    await aceMinter.send(
         provider.sender(),
         {
             value: toNano('0.05'),
@@ -16,7 +16,7 @@ export async function run(provider: NetworkProvider) {
         }
     );
 
-    await provider.waitForDeploy(aceMiner.address);
+    await provider.waitForDeploy(aceMinter.address);
 
-    // run methods on `aceMiner`
+    // run methods on `aceMinter`
 }

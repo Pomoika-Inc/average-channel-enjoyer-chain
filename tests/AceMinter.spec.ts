@@ -1,21 +1,21 @@
 import { Blockchain, SandboxContract, TreasuryContract } from '@ton/sandbox';
 import { toNano } from '@ton/core';
-import { AceMiner } from '../wrappers/AceMiner';
+import { AceMinter } from '../wrappers/AceMinter';
 import '@ton/test-utils';
 
-describe('AceMiner', () => {
+describe('AceMinter', () => {
     let blockchain: Blockchain;
     let deployer: SandboxContract<TreasuryContract>;
-    let aceMiner: SandboxContract<AceMiner>;
+    let aceMinter: SandboxContract<AceMinter>;
 
     beforeEach(async () => {
         blockchain = await Blockchain.create();
 
-        aceMiner = blockchain.openContract(await AceMiner.fromInit());
+        aceMinter = blockchain.openContract(await AceMinter.fromInit());
 
         deployer = await blockchain.treasury('deployer');
 
-        const deployResult = await aceMiner.send(
+        const deployResult = await aceMinter.send(
             deployer.getSender(),
             {
                 value: toNano('0.05'),
@@ -28,7 +28,7 @@ describe('AceMiner', () => {
 
         expect(deployResult.transactions).toHaveTransaction({
             from: deployer.address,
-            to: aceMiner.address,
+            to: aceMinter.address,
             deploy: true,
             success: true,
         });
@@ -36,6 +36,6 @@ describe('AceMiner', () => {
 
     it('should deploy', async () => {
         // the check is done inside beforeEach
-        // blockchain and aceMiner are ready to use
+        // blockchain and aceMinter are ready to use
     });
 });
