@@ -1,0 +1,15 @@
+{
+  "$schema": "http://raw.githubusercontent.com/tact-lang/tact/main/schemas/configSchema.json",
+  "projects": [
+    {
+      "name": "AceMinter",
+      "path": "./contracts/ace_minter.tact",
+      "output": "./build/AceMinter"
+    },
+    {
+      "name": "AceWallet",
+      "path": "./contracts/ace_wallet.tact",
+      "output": "./build/AceWallet"
+    }
+  ]
+}
