@@ -757,25 +757,7 @@
   dependencies:
     "@sinonjs/commons" "^3.0.0"
 
-"@tact-lang/compiler@1.4.4":
-  version "1.4.4"
-  resolved "https://registry.yarnpkg.com/@tact-lang/compiler/-/compiler-1.4.4.tgz#05de108884dc156023f513df82149ecc91b5b4e6"
-  integrity sha512-hpVgH+9wUEmzBiPg3G2S4nt0sDL/iUSKHPoGz45ecDPVCjfqa6RjWhn24HmJ67kBFLZpahA+DaUFCy2UxIZ45A==
-  dependencies:
-    "@tact-lang/opcode" "^0.0.16"
-    "@ton/core" "0.56.3"
-    "@ton/crypto" "^3.2.0"
-    blockstore-core "1.0.5"
-    change-case "^4.1.2"
-    ipfs-unixfs-importer "9.0.10"
-    meow "^13.2.0"
-    mkdirp "^2.1.3"
-    ohm-js "^17.1.0"
-    path-normalize "^6.0.13"
-    prando "^6.0.1"
-    zod "^3.22.4"
-
-"@tact-lang/compiler@^1.4.0", "@tact-lang/compiler@~1.5.1":
+"@tact-lang/compiler@1.5.1", "@tact-lang/compiler@^1.4.0", "@tact-lang/compiler@~1.5.1":
   version "1.5.1"
   resolved "https://registry.yarnpkg.com/@tact-lang/compiler/-/compiler-1.5.1.tgz#2b82dd6f26c741989bf6270ccaf706f728ede5ac"
   integrity sha512-pzszIP3vtDLMYT2dVO9U0siLBxxjgFUig95uKb/u2Y+MOByoBMyBIRxJlw1IoQUXYIFKGTPpBIhS3bHcLCkNTQ==
@@ -827,13 +809,6 @@
     inquirer "^8.2.5"
     qrcode-terminal "^0.12.0"
     ts-node "^10.9.1"
-
-"@ton/core@0.56.3":
-  version "0.56.3"
-  resolved "https://registry.yarnpkg.com/@ton/core/-/core-0.56.3.tgz#1162764573abb76032eba70f8497e5cb2ea532ee"
-  integrity sha512-HVkalfqw8zqLLPehtq0CNhu5KjVzc7IrbDwDHPjGoOSXmnqSobiWj8a5F+YuWnZnEbQKtrnMGNOOjVw4LG37rg==
-  dependencies:
-    symbol.inspect "1.0.1"
 
 "@ton/core@0.58.1", "@ton/core@~0":
   version "0.58.1"
