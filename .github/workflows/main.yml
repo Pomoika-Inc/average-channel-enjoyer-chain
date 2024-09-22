@@ -11,7 +11,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        node-version: [20.x]
+        node-version: [22.x]
     steps:
       - name: Checkout
         uses: actions/checkout@v3
@@ -21,19 +21,19 @@ jobs:
           node-version: ${{ matrix.node-version }}
           cache: npm
       - name: Run install
-        uses: borales/actions-yarn@v4
+        uses: borales/actions-yarn@v5
         with:
           cmd: install
       - name: Lint
-        uses: borales/actions-yarn@v4
+        uses: borales/actions-yarn@v5
         with:
           cmd: lint
       - name: Build
-        uses: borales/actions-yarn@v4
+        uses: borales/actions-yarn@v5
         with:
           cmd: build --all 
       - name: Test
-        uses: borales/actions-yarn@v4
+        uses: borales/actions-yarn@v5
         with:
           cmd: test
 
