@@ -8,6 +8,9 @@
         "lint": "blueprint misti ./tact.config.json"
     },
     "devDependencies": {
+        "@nowarp/blueprint-misti": "^0.3.1",
+        "@nowarp/misti": "^0.3.0",
+        "@tact-lang/compiler": "1.4.4",
         "@ton/blueprint": "^0.24.0",
         "@ton/core": "~0",
         "@ton/crypto": "^3.2.0",
@@ -20,9 +23,6 @@
         "prettier": "^3.3.2",
         "ts-jest": "^29.2.0",
         "ts-node": "^10.9.2",
-        "typescript": "^5.5.3",
-        "@nowarp/blueprint-misti": "^0.2.6",
-        "@nowarp/misti": "^0.2.2",
-        "tact": "^0.1.0"
+        "typescript": "^5.5.3"
     }
 }

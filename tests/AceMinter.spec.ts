@@ -11,7 +11,7 @@ describe('AceMinter', () => {
     beforeEach(async () => {
         blockchain = await Blockchain.create();
 
-        aceMinter = blockchain.openContract(await AceMinter.fromInit());
+        aceMinter = blockchain.openContract(await AceMinter.fromInit(123n, "localhost"));
 
         deployer = await blockchain.treasury('deployer');
 

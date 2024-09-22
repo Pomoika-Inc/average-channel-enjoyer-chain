@@ -11,9 +11,9 @@ describe('AceWallet', () => {
     beforeEach(async () => {
         blockchain = await Blockchain.create();
 
-        aceWallet = blockchain.openContract(await AceWallet.fromInit());
-
         deployer = await blockchain.treasury('deployer');
+
+        aceWallet = blockchain.openContract(await AceWallet.fromInit(deployer.address, deployer.address, 123n));
 
         const deployResult = await aceWallet.send(
             deployer.getSender(),
