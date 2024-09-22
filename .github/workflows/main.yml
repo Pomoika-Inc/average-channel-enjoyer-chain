@@ -20,14 +20,22 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
           cache: npm
-      - name: Import
-        run: npm ci
+      - name: Run install
+        uses: borales/actions-yarn@v4
+        with:
+          cmd: install
       - name: Lint
-        run: npm run lint
+        uses: borales/actions-yarn@v4
+        with:
+          cmd: lint
       - name: Build
-        run: npm run build --all 
+        uses: borales/actions-yarn@v4
+        with:
+          cmd: build --all 
       - name: Test
-        run: npm run test
+        uses: borales/actions-yarn@v4
+        with:
+          cmd: test
 
   auto-merge:
     if: github.event_name == 'pull_request' && github.actor == 'dependabot[bot]'
