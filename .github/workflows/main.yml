@@ -25,13 +25,9 @@ jobs:
         with:
           cmd: install
       - name: Lint
-        uses: borales/actions-yarn@v5
-        with:
-          cmd: lint
+        run: yarn lint
       - name: Build
-        uses: borales/actions-yarn@v5
-        with:
-          cmd: build --all 
+        run: yarn build --all 
       - name: Test
         run: yarn test
 
