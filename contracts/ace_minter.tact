@@ -59,6 +59,10 @@ contract AceMinter with Deployable, Ownable {
             jetton_wallet_code: initOf AceWallet(myAddress(), self.owner, self.channelId).code
         };
     }
+
+    get fun balance(): Int {
+        return myBalance();
+    }
 }
 
 message Mint {

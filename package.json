@@ -4,7 +4,7 @@
     "scripts": {
         "start": "blueprint run",
         "build": "blueprint build",
-        "test": "jest --verbose",
+        "test": "jest --verbose --maxWorkers=1",
         "lint": "blueprint misti ./tact.config.json"
     },
     "devDependencies": {

@@ -21,7 +21,6 @@ contract AceWallet with Deployable, Ownable {
         require(sender == self.minter && sender == msg.origin, ERROR_UNKNOWN_SENDER);   //sending between wallets is not allowed
 
         self.balance += msg.amount;
-
         let fwd_fee: Int = ctx.readForwardFee() * 3 / 2;
         let msg_value: Int = calculateMsgValue(myBalance(), ctx.value);
         if (msg.forwardContent != null) {
@@ -42,5 +41,13 @@ contract AceWallet with Deployable, Ownable {
             value: msg_value,
             mode: SendIgnoreErrors
         });
+    }
+
+    get fun jetton_balance(): Int {
+        return self.balance;
+    }
+
+    get fun balance(): Int {
+        return myBalance();
     }
 }
