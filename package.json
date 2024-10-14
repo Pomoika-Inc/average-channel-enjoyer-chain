@@ -9,7 +9,7 @@
     },
     "devDependencies": {
         "@nowarp/blueprint-misti": "^0.4.1",
-        "@nowarp/misti": "^0.3.1",
+        "@nowarp/misti": "^0.4.2",
         "@tact-lang/compiler": "1.5.2",
         "@ton/blueprint": "^0.24.0",
         "@ton/core": "~0",
