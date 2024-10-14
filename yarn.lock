@@ -566,17 +566,34 @@
     multiformats "^9.5.4"
     murmurhash3js-revisited "^3.0.0"
 
-"@nowarp/blueprint-misti@^0.3.2":
-  version "0.3.2"
-  resolved "https://registry.yarnpkg.com/@nowarp/blueprint-misti/-/blueprint-misti-0.3.2.tgz#e589259c5bec300b2e4fbab205d11c588017f2b9"
-  integrity sha512-cGCmh6GArH8gyhC7FGa/nD68ohgAd0pJLA2+OZ7gg2jyEdRmBd7ppO1TvxzCAYTBQgPuIVYDq8hmvg2RSlfqkg==
+"@nowarp/blueprint-misti@^0.4.1":
+  version "0.4.1"
+  resolved "https://registry.yarnpkg.com/@nowarp/blueprint-misti/-/blueprint-misti-0.4.1.tgz#b5db9fb7634f8603000de42b82f1d2318b29c974"
+  integrity sha512-yNqwuFh/UFnRNXQeX7cdgVvYEHdpLqnWwd9sEcMTwAW/BQsFsgonx98zRqhzv4jriIv938JwgMUtH2RbxyX3fQ==
   dependencies:
-    "@nowarp/misti" "^0.3.1"
+    "@nowarp/misti" "~0.4.1"
 
 "@nowarp/misti@^0.3.1":
   version "0.3.1"
   resolved "https://registry.yarnpkg.com/@nowarp/misti/-/misti-0.3.1.tgz#33a46743ac63d9f0cdf701fc5906d4eccef03bda"
   integrity sha512-7D8ZXFn9vMNjj8bXKQg7nbhNuFsz9itqVtANnVF1u6lhx0hfmEc+soEHFSxm0pq2siiwqPEkbfIzQGZTJzdqyQ==
+  dependencies:
+    "@nowarp/souffle" "^0.1.2"
+    "@tact-lang/compiler" "~1.5.1"
+    "@types/benchmark" "^2.1.5"
+    "@types/fs-extra" "^11.0.4"
+    "@types/json-bigint" "^1.0.4"
+    benchmark "^2.1.4"
+    commander "^12.0.0"
+    fs-extra "^11.2.0"
+    json-bigint "^1.0.0"
+    ohm-js "^17.1.0"
+    zod "^3.22.4"
+
+"@nowarp/misti@~0.4.1":
+  version "0.4.2"
+  resolved "https://registry.yarnpkg.com/@nowarp/misti/-/misti-0.4.2.tgz#67985310c0a21863a6e61477666e4fef7a955a8e"
+  integrity sha512-YnNSgNdpDYvQSHeeW+p7kyy033q2vPzCqhm5iV5ifrQPu4G5gplSm/2yksOlECyABlvkknm3dLMa9he/pZEC7w==
   dependencies:
     "@nowarp/souffle" "^0.1.2"
     "@tact-lang/compiler" "~1.5.1"
