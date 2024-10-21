@@ -762,10 +762,10 @@
   dependencies:
     node-inspect-extracted "^2.0.0"
 
-"@ton/ton@^15.0.0":
-  version "15.0.0"
-  resolved "https://registry.yarnpkg.com/@ton/ton/-/ton-15.0.0.tgz#03aab727d082db877ec6012f3b1b3fb6aa564b40"
-  integrity sha512-0xBivkN0u0+vczt3mKJrx5yqkCxRR00wM8gXCmN/eOzzHKXRFWDEjJp8EEs5J/mq1Op/OhCOFExmOZkr58wgOA==
+"@ton/ton@^15.1.0":
+  version "15.1.0"
+  resolved "https://registry.yarnpkg.com/@ton/ton/-/ton-15.1.0.tgz#a760b1492dd3e5896238b7154f7377f4e51fa086"
+  integrity sha512-almetcfTu7jLjcNcEEPB7wAc8yl90ES1M//sOr1QE+kv7RbmEvMkaPSc7kFxzs10qrjIPKxlodBJlMSWP5LuVQ==
   dependencies:
     axios "^1.6.7"
     dataloader "^2.0.0"
