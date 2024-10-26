@@ -16,7 +16,7 @@ describe('AceMinter', () => {
         blockchain = await Blockchain.create()
         deployer = await blockchain.treasury('deployer')
 
-        aceMinter = blockchain.openContract(await AceMinter.fromInit(123n, "localhost"))
+        aceMinter = blockchain.openContract(await AceMinter.fromInit(deployer.address, 123n))
         aceWallet = blockchain.openContract(await AceWallet.fromInit(deployer.address, aceMinter.address, 123n))
 
         const deployResult = await aceMinter.send(

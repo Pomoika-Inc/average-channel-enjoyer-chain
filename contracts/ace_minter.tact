@@ -18,16 +18,14 @@ struct Metadata {
 }
 
 contract AceMinter with Deployable, Ownable {
-    
     owner: Address;
     channelId: Int as int64;
     totalSupply: Int as coins = 0;
-    data: JettonData;
+    data: JettonData = JettonData{uri: ""};
 
-    init(channelId: Int, uri: String) {
-        self.owner = sender();
+    init(owner: Address, channelId: Int) {
+        self.owner = owner;
         self.channelId = channelId;
-        self.data = JettonData{uri};
     }
 
     receive(msg: Mint) {
