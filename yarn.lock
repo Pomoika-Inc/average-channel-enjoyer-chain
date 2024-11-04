@@ -705,15 +705,17 @@
     "@ton-community/func-js-bin" "0.4.4-newops.1"
     arg "^5.0.2"
 
-"@ton/blueprint@^0.24.0":
-  version "0.24.0"
-  resolved "https://registry.yarnpkg.com/@ton/blueprint/-/blueprint-0.24.0.tgz#bd3542113329691526234a5528faa49d39d24308"
-  integrity sha512-JTYGfkU8ZiSi2XCPJwea2sA7ijGYBHx9OMcyfj01i1F3zpMR3RhTFl1ETgJjBud+2TTNsAUEjteVZhpjnTx32w==
+"@ton/blueprint@^0.25.0":
+  version "0.25.0"
+  resolved "https://registry.yarnpkg.com/@ton/blueprint/-/blueprint-0.25.0.tgz#47005282d5fb827491f2d4f318983ff7cd0628a2"
+  integrity sha512-ji5VnGNt/j68Zkp9CB5P1JV1AHN99fHdP7+sKtOo+qIlO6c09vSLhTvGcWu70KOYPj27SRGBSQbpWdBreX/OhA==
   dependencies:
     "@tact-lang/compiler" "^1.4.0"
     "@ton-community/func-js" "^0.7.0"
+    "@ton/tolk-js" "^0.6.0"
     "@tonconnect/sdk" "^2.2.0"
     arg "^5.0.2"
+    axios "^1.7.7"
     chalk "^4.1.0"
     dotenv "^16.1.4"
     inquirer "^8.2.5"
@@ -761,6 +763,13 @@
   integrity sha512-fthY8Nrlmy8jnOl/vx6yjeKzzu62ZXMe7ej9Xg7rb4d3511V7dVQK+nw4YLSW5+dD/6WT03dFuNZXnuMYy5fHw==
   dependencies:
     node-inspect-extracted "^2.0.0"
+
+"@ton/tolk-js@^0.6.0":
+  version "0.6.0"
+  resolved "https://registry.yarnpkg.com/@ton/tolk-js/-/tolk-js-0.6.0.tgz#ab904a6d5de47547949dc7b71e25cb1d5af5f1f2"
+  integrity sha512-nyl1fThoyuDTfdHsQ7kZ5rg666Mu0X+uUvAP1zSOM5l3zP0RQdBSBWRLn4IlpfFG+XBXg1sisARgd9yZL+gkhg==
+  dependencies:
+    arg "^5.0.2"
 
 "@ton/ton@^15.1.0":
   version "15.1.0"
@@ -1023,7 +1032,7 @@ asynckit@^0.4.0:
   resolved "https://registry.yarnpkg.com/asynckit/-/asynckit-0.4.0.tgz#c79ed97f7f34cb8f2ba1bc9790bcc366474b4b79"
   integrity sha512-Oei9OH4tRh0YqU3GxhX79dM/mwVgvbZJaSNaRk+bshkj0S5cfHcgYakreBjrHwatXKbz+IoIdYLxrKim2MjW0Q==
 
-axios@^1.6.7:
+axios@^1.6.7, axios@^1.7.7:
   version "1.7.7"
   resolved "https://registry.yarnpkg.com/axios/-/axios-1.7.7.tgz#2f554296f9892a72ac8d8e4c5b79c14a91d0a47f"
   integrity sha512-S4kL7XrjgBmvdGut0sN3yJxqYzrDOnivkBiN0OFs6hLiUam3UPvswUo0kqGyhqUZGEOytHyumEdXsAkgCOUf3Q==
