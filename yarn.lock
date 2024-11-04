@@ -573,24 +573,7 @@
   dependencies:
     "@nowarp/misti" "~0.5.0"
 
-"@nowarp/misti@^0.4.2":
-  version "0.4.2"
-  resolved "https://registry.yarnpkg.com/@nowarp/misti/-/misti-0.4.2.tgz#67985310c0a21863a6e61477666e4fef7a955a8e"
-  integrity sha512-YnNSgNdpDYvQSHeeW+p7kyy033q2vPzCqhm5iV5ifrQPu4G5gplSm/2yksOlECyABlvkknm3dLMa9he/pZEC7w==
-  dependencies:
-    "@nowarp/souffle" "^0.1.2"
-    "@tact-lang/compiler" "~1.5.1"
-    "@types/benchmark" "^2.1.5"
-    "@types/fs-extra" "^11.0.4"
-    "@types/json-bigint" "^1.0.4"
-    benchmark "^2.1.4"
-    commander "^12.0.0"
-    fs-extra "^11.2.0"
-    json-bigint "^1.0.0"
-    ohm-js "^17.1.0"
-    zod "^3.22.4"
-
-"@nowarp/misti@~0.5.0":
+"@nowarp/misti@^0.5.0", "@nowarp/misti@~0.5.0":
   version "0.5.0"
   resolved "https://registry.yarnpkg.com/@nowarp/misti/-/misti-0.5.0.tgz#e25e882fba99fa6c37abd4557a7bdbcc3a7cd05a"
   integrity sha512-gx1IO8+8YQEsU2M8TWJfQ24K55aIpCUkMzXNJuEe2fL/fECp76+4nx/2wAG8XjL2WNIB1CuL9vLcNWy2dzafIg==
