@@ -1,11 +1,13 @@
 import "@stdlib/deploy";
 import "@stdlib/ownable";
+import "./ace_moulder";
+import "./ace_merchant";
 import "./utils";
 
 // Channel goods templates creator
 contract AceManufactory with Deployable, Adminable {
     owner: Address;
-    admin: Address = null;
+    admin: Address? = null;
     channelId: Int as int64;
 
     nextMoulderIndex: Int as uint32 = 0;
@@ -22,24 +24,18 @@ contract AceManufactory with Deployable, Adminable {
         // Check if there are enough funds to create a new moulder and merchant
         require((value - MIN_TON_FOR_STORAGE * 2) >= 0, ERROR_NOT_ENOUGH_FUNDS);
 
-        let moulder = initOf AceMoulder{
-            channelId: self.channelId,
-            id: self.nextMoulderIndex
-        };
+        let moulder = initOf AceMoulder(self.owner, self.channelId, self.nextMoulderIndex);
 
-        let merchant = initOf AceMerchant{
-            channelId: self.channelId,
-            id: self.nextMoulderIndex
-        };
+        let merchant = initOf AceMerchant(self.owner, self.channelId, self.nextMoulderIndex);
 
         send(SendParameters{
             to: contractAddress(moulder),
             body: SetAdmin{
                 queryId: msg.queryId,
-                admin: self.admin
+                admin: self.admin!!
             }.toCell(),
             value: value / 2,
-            mode: SendBounceIfActionFail
+            mode: SendBounceIfActionFail,
             code: moulder.code,
             data: moulder.data
         });
@@ -48,10 +44,10 @@ contract AceManufactory with Deployable, Adminable {
             to: contractAddress(merchant),
             body: SetAdmin{
                 queryId: msg.queryId,
-                admin: self.admin
+                admin: self.admin!!
             }.toCell(),
             value: value / 2,
-            mode: SendBounceIfActionFail
+            mode: SendBounceIfActionFail,
             code: merchant.code,
             data: merchant.data
         });
@@ -61,23 +57,15 @@ contract AceManufactory with Deployable, Adminable {
 
     receive(msg: ApproveMoulding) {
         self.requireOwner();
-        let moulder = initOf AceMoulder{
-            owner = self.owner,
-            channelId: self.channelId,
-            id: msg.moulderId
-        };
+        let moulder = initOf AceMoulder(self.owner, self.channelId, msg.moulderId);
 
-        let merchant = initOf AceMerchant{
-            owner = self.owner,
-            channelId: self.channelId,
-            id: msg.moulderId
-        };
+        let merchant = initOf AceMerchant(self.owner, self.channelId, msg.moulderId);
 
         send(SendParameters{
             to: contractAddress(moulder),
             body: EnableMoulder{
                 queryId: msg.queryId,
-                merchant: contractAddress(self.merchant)
+                merchant: contractAddress(merchant)
             }.toCell(),
             value: 0,
             mode: SendRemainingValue | SendIgnoreErrors

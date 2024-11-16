@@ -27,7 +27,7 @@ fun calculateMsgValue(balance: Int, msgCoins: Int): Int {
 
 trait Adminable with Ownable {
     owner: Address;
-    admin: Address;
+    admin: Address?;
 
     receive(msg: SetAdmin) {
         self.requireOwner();
@@ -44,7 +44,7 @@ trait Adminable with Ownable {
 
         if (excesses > 0) {
             send(SendParameters{
-                to: self.admin,
+                to: self.admin!!,
                 body: Excesses{queryId: queryId}.toCell(),
                 value: excesses,
                 mode: SendIgnoreErrors

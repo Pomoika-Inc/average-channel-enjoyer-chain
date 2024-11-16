@@ -7,7 +7,7 @@ import "./utils";
 // Creates goods for customers
 contract AceMoulder with Deployable, Adminable, Stoppable {
     owner: Address;
-    admin: Address = null;
+    admin: Address? = null;
     stopped: Bool = true;
 
     channelId: Int as int64;

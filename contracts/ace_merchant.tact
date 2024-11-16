@@ -1,10 +1,11 @@
 import "@stdlib/deploy";
+import "./ace_moulder";
 import "./utils";
 
 // Sells goods to customers
 contract AceMerchant with Deployable, Adminable {
     owner: Address;
-    admin: Address = null;
+    admin: Address? = null;
     stopped: Bool = true;
 
     channelId: Int as int64;
@@ -33,10 +34,7 @@ contract AceMerchant with Deployable, Adminable {
     receive(msg: CancelSales) {
         self.requireAdmin();
         
-        let moulder = initOf AceMoulder{
-            channelId: self.channelId,
-            id: self.id
-        };
+        let moulder = initOf AceMoulder(self.owner, self.channelId, self.id);
 
         send(SendParameters{
             to: contractAddress(moulder),
