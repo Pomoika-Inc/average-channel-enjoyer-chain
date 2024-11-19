@@ -30,7 +30,7 @@ contract AceMinter with Deployable, Ownable {
 
     receive(msg: Mint) {
         self.requireOwner();
-        let init: StateInit = initOf AceWallet(msg.rewarded, myAddress(), self.channelId);
+        let init: StateInit = initOf AceWallet(msg.rewarded, myAddress());
 
         send(SendParameters{
             to: contractAddress(init),
@@ -54,7 +54,7 @@ contract AceMinter with Deployable, Ownable {
             mintable: true,
             admin_address: self.owner,
             jetton_content: self.data.toCell(),
-            jetton_wallet_code: initOf AceWallet(myAddress(), self.owner, self.channelId).code
+            jetton_wallet_code: initOf AceWallet(self.owner, myAddress()).code
         };
     }
 
