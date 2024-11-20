@@ -4,7 +4,13 @@ import "./ace_moulder";
 import "./ace_merchant";
 import "./utils";
 
-// Channel goods templates creator
+struct ManufactoryInfo {
+    channelId: Int as int64;
+    admin: Address?;
+    mouldersCount: Int as uint32;
+}
+
+/** Channel's goods' templates creator */ 
 contract AceManufactory with Deployable, Adminable {
     owner: Address;
     admin: Address? = null;
@@ -20,13 +26,13 @@ contract AceManufactory with Deployable, Adminable {
     receive(msg: CreateMoulder) {
         self.requireAdmin();
 
-        let value = calculateMsgValue(myBalance(), context().value);
+        let value = calculateMsgValue(myBalance(), context().value) / 2;
         // Check if there are enough funds to create a new moulder and merchant
-        require((value - MIN_TON_FOR_STORAGE * 2) >= 0, ERROR_NOT_ENOUGH_FUNDS);
+        require(value - MIN_TON_FOR_STORAGE >= 0, ERROR_NOT_ENOUGH_FUNDS);
+        let myAddress = myAddress();
 
-        let moulder = initOf AceMoulder(self.owner, self.channelId, self.nextMoulderIndex);
-
-        let merchant = initOf AceMerchant(self.owner, self.channelId, self.nextMoulderIndex);
+        let moulder = initOf AceMoulder(myAddress, self.channelId, self.nextMoulderIndex);
+        let merchant = initOf AceMerchant(myAddress, self.channelId, self.nextMoulderIndex);
 
         send(SendParameters{
             to: contractAddress(moulder),
@@ -34,7 +40,7 @@ contract AceManufactory with Deployable, Adminable {
                 queryId: msg.queryId,
                 admin: self.admin!!
             }.toCell(),
-            value: value / 2,
+            value: value,
             mode: SendBounceIfActionFail,
             code: moulder.code,
             data: moulder.data
@@ -46,7 +52,7 @@ contract AceManufactory with Deployable, Adminable {
                 queryId: msg.queryId,
                 admin: self.admin!!
             }.toCell(),
-            value: value / 2,
+            value: value,
             mode: SendBounceIfActionFail,
             code: merchant.code,
             data: merchant.data
@@ -57,18 +63,33 @@ contract AceManufactory with Deployable, Adminable {
 
     receive(msg: ApproveMoulding) {
         self.requireOwner();
-        let moulder = initOf AceMoulder(self.owner, self.channelId, msg.moulderId);
 
-        let merchant = initOf AceMerchant(self.owner, self.channelId, msg.moulderId);
+        let value = (context().value - GAS_CONSUMPTION) / 2;
+        require(value > 0, ERROR_NOT_ENOUGH_FUNDS);
+
+        let myAddress = myAddress();
+        let moulder = contractAddress(initOf AceMoulder(myAddress, self.channelId, msg.moulderId));
+        let merchant = contractAddress(initOf AceMerchant(myAddress, self.channelId, msg.moulderId));
 
         send(SendParameters{
-            to: contractAddress(moulder),
-            body: EnableMoulder{
-                queryId: msg.queryId,
-                merchant: contractAddress(merchant)
-            }.toCell(),
-            value: 0,
-            mode: SendRemainingValue | SendIgnoreErrors
+            to: moulder,
+            body: RESUME_COMMENT,
+            value: value,
+            mode: SendIgnoreErrors
         });
+        send(SendParameters{
+            to: merchant,
+            body: RESUME_COMMENT,
+            value: value,
+            mode: SendIgnoreErrors
+        });
+    }
+
+    get fun manufactoryInfo(): ManufactoryInfo {
+        return ManufactoryInfo{
+            channelId: self.channelId,
+            admin: self.admin,
+            mouldersCount: self.nextMoulderIndex
+        };
     }
 }

@@ -17,7 +17,7 @@ describe('AceMinter', () => {
         deployer = await blockchain.treasury('deployer')
 
         aceMinter = blockchain.openContract(await AceMinter.fromInit(deployer.address, 123n))
-        aceWallet = blockchain.openContract(await AceWallet.fromInit(deployer.address, aceMinter.address, 123n))
+        aceWallet = blockchain.openContract(await AceWallet.fromInit(deployer.address, aceMinter.address))
 
         const deployResult = await aceMinter.send(
             deployer.getSender(),
@@ -106,7 +106,7 @@ describe('AceMinter', () => {
     it('should mint to new wallet', async () => {
         const mintAmount = 100n
         const customer = await blockchain.treasury('customer')
-        const customerWallet = blockchain.openContract(await AceWallet.fromInit(customer.address, aceMinter.address, 123n))
+        const customerWallet = blockchain.openContract(await AceWallet.fromInit(customer.address, aceMinter.address))
         
         const deployerBalanceBefore = await deployer.getBalance()
         let result = await aceMinter.send(

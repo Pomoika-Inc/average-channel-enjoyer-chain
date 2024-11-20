@@ -11,6 +11,8 @@ const ERROR_NOT_ENOUGH_FUNDS: String = "Not enough funds";
 const ERROR_INVALID_PRICE: String = "Price must be greater than 0";
 const ERROR_INVALID_QUANTITY: String = "Quantity must be greater or equal to 0";
 
+const RESUME_COMMENT: Cell = "Resume".asComment();
+
 fun calculateMsgValue(balance: Int, msgCoins: Int): Int {
     dump(balance);
     dump(msgCoins);

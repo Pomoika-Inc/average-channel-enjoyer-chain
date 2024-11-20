@@ -1,1 +1,1 @@
-export * from '../build/AceMerchant/tact_AceMerchant';
+export * from '../build/AceManufactory/tact_AceMerchant';

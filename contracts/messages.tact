@@ -38,14 +38,8 @@ message SetContent {
     content: MoulderContent;
 }
 
-message EnableMoulder {
-    queryId: Int as uint64;
-    merchant: Address;
-}
-
 message DisableMoulder {
     queryId: Int as uint64;
-    owner: Address;
 }
 
 message Mould {

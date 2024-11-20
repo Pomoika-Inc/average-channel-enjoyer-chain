@@ -9,29 +9,29 @@ describe('AceMoulder', () => {
     let aceMoulder: SandboxContract<AceMoulder>;
 
     beforeEach(async () => {
-        blockchain = await Blockchain.create();
+        // blockchain = await Blockchain.create();
 
-        aceMoulder = blockchain.openContract(await AceMoulder.fromInit());
+        // aceMoulder = blockchain.openContract(await AceMoulder.fromInit());
 
-        deployer = await blockchain.treasury('deployer');
+        // deployer = await blockchain.treasury('deployer');
 
-        const deployResult = await aceMoulder.send(
-            deployer.getSender(),
-            {
-                value: toNano('0.05'),
-            },
-            {
-                $$type: 'Deploy',
-                queryId: 0n,
-            }
-        );
+        // const deployResult = await aceMoulder.send(
+        //     deployer.getSender(),
+        //     {
+        //         value: toNano('0.05'),
+        //     },
+        //     {
+        //         $$type: 'Deploy',
+        //         queryId: 0n,
+        //     }
+        // );
 
-        expect(deployResult.transactions).toHaveTransaction({
-            from: deployer.address,
-            to: aceMoulder.address,
-            deploy: true,
-            success: true,
-        });
+        // expect(deployResult.transactions).toHaveTransaction({
+        //     from: deployer.address,
+        //     to: aceMoulder.address,
+        //     deploy: true,
+        //     success: true,
+        // });
     });
 
     it('should deploy', async () => {

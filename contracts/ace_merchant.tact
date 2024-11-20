@@ -2,7 +2,16 @@ import "@stdlib/deploy";
 import "./ace_moulder";
 import "./utils";
 
-// Sells goods to customers
+struct MerchantInfo {
+    id: Int as uint32;
+    channelId: Int as int64;
+    admin: Address?;
+    stopped: Bool;
+    price: Int as coins;
+    quantity: Int as uint32;
+}
+
+/** Sells goods to customers */
 contract AceMerchant with Deployable, Adminable {
     owner: Address;
     admin: Address? = null;
@@ -33,17 +42,26 @@ contract AceMerchant with Deployable, Adminable {
 
     receive(msg: CancelSales) {
         self.requireAdmin();
+        self.stopped = true;
         
-        let moulder = initOf AceMoulder(self.owner, self.channelId, self.id);
-
         send(SendParameters{
-            to: contractAddress(moulder),
+            to: contractAddress(initOf AceMoulder(self.owner, self.channelId, self.id)),
             body: DisableMoulder{
                 queryId: msg.queryId,
-                owner: self.owner
             }.toCell(),
             value: calculateMsgValue(myBalance(), context().value),
             mode: SendIgnoreErrors
         });
+    }
+
+    get fun merchantInfo(): MerchantInfo {
+        return MerchantInfo{
+            id: self.id,
+            channelId: self.channelId,
+            admin: self.admin,
+            stopped: self.stopped,
+            price: self.price,
+            quantity: self.quantity
+        };
     }
 }
