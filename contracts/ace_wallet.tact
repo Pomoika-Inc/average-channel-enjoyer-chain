@@ -6,13 +6,11 @@ import "./utils";
 contract AceWallet with Deployable, Ownable {
     owner: Address;
     minter: Address;
-    channelId: Int as int64;
     balance: Int as coins = 0;
 
-    init(owner: Address, minter: Address, channelId: Int) {
+    init(owner: Address, minter: Address) {
         self.owner = owner;
         self.minter = minter;
-        self.channelId = channelId;
     }
 
     receive(msg: InternalAdd) {

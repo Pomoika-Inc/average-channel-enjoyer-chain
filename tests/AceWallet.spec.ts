@@ -13,7 +13,7 @@ describe('AceWallet', () => {
 
         deployer = await blockchain.treasury('deployer');
 
-        aceWallet = blockchain.openContract(await AceWallet.fromInit(deployer.address, deployer.address, 123n));
+        aceWallet = blockchain.openContract(await AceWallet.fromInit(deployer.address, deployer.address));
 
         const deployResult = await aceWallet.send(
             deployer.getSender(),

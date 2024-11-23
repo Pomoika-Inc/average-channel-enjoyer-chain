@@ -1,1 +1,1 @@
-export * from '../build/AceWallet/tact_AceWallet';
+export * from '../build/AceMinter/tact_AceWallet';
