@@ -12,6 +12,7 @@ const ERROR_INVALID_PRICE: String = "Price must be greater than 0";
 const ERROR_INVALID_QUANTITY: String = "Quantity must be greater or equal to 0";
 
 const RESUME_COMMENT: Cell = "Resume".asComment();
+const STOP_COMMENT: Cell = "Stop".asComment();
 
 fun calculateMsgValue(balance: Int, msgCoins: Int): Int {
     dump(balance);

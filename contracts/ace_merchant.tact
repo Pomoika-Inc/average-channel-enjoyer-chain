@@ -40,6 +40,13 @@ contract AceMerchant with Deployable, Adminable {
         self.sendExcessessToAdmin(msg.queryId);
     }
 
+    receive(msg: StartSales) {
+        self.requireAdmin();
+        self.stopped = false;
+        
+        // TODO: notification to owner that moulder's approve is needed
+    }
+
     receive(msg: CancelSales) {
         self.requireAdmin();
         self.stopped = true;
@@ -49,8 +56,8 @@ contract AceMerchant with Deployable, Adminable {
             body: DisableMoulder{
                 queryId: msg.queryId,
             }.toCell(),
-            value: calculateMsgValue(myBalance(), context().value),
-            mode: SendIgnoreErrors
+            value: context().value,
+            mode: SendIgnoreErrors 
         });
     }
 

@@ -61,25 +61,18 @@ contract AceManufactory with Deployable, Adminable {
         self.nextMoulderIndex += 1;
     }
 
-    receive(msg: ApproveMoulding) {
+    receive(msg: SwitchMoulderState) {
+        require(msg.moulderId < self.nextMoulderIndex, "Moulder doesn't exist");
         self.requireOwner();
 
-        let value = (context().value - GAS_CONSUMPTION) / 2;
+        let value = (context().value - GAS_CONSUMPTION);
         require(value > 0, ERROR_NOT_ENOUGH_FUNDS);
 
-        let myAddress = myAddress();
-        let moulder = contractAddress(initOf AceMoulder(myAddress, self.channelId, msg.moulderId));
-        let merchant = contractAddress(initOf AceMerchant(myAddress, self.channelId, msg.moulderId));
+        let moulder = contractAddress(initOf AceMoulder(myAddress(), self.channelId, msg.moulderId));
 
         send(SendParameters{
             to: moulder,
-            body: RESUME_COMMENT,
-            value: value,
-            mode: SendIgnoreErrors
-        });
-        send(SendParameters{
-            to: merchant,
-            body: RESUME_COMMENT,
+            body: msg.target ? RESUME_COMMENT : STOP_COMMENT,
             value: value,
             mode: SendIgnoreErrors
         });

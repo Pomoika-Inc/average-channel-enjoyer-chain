@@ -21,9 +21,10 @@ message CreateMoulder {
     queryId: Int as uint64;
 }
 
-message ApproveMoulding {
+message SwitchMoulderState {
     queryId: Int as uint64;
     moulderId: Int as uint32;
+    target: Bool;
 }
 
 // Moulder
@@ -53,6 +54,10 @@ message SetPriceTag {
     queryId: Int as uint64;
     price: Int as coins;
     quantity: Int as uint32;
+}
+
+message StartSales {
+    queryId: Int as uint64;
 }
 
 message CancelSales {
