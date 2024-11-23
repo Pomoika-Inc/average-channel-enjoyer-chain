@@ -6,7 +6,8 @@ import "./utils";
 
 struct JettonData {
     uri: String;
-    decimals: Int as int8 = 0;
+    // decimals: Int as int8 = 0;
+    // amount_style: String = "n";
 }
 
 struct Metadata {
@@ -46,6 +47,12 @@ contract AceMinter with Deployable, Ownable {
             data: init.data
         });
         self.totalSupply += msg.amount;
+    }
+
+    bounced(msg: bounced<InternalAdd>) {
+        self.totalSupply -= msg.amount;
+
+        // TODO: notify the owner
     }
 
     get fun jetton_data(): Metadata {

@@ -22,7 +22,7 @@ contract AceMoulder with Deployable, Adminable, Resumable {
     channelId: Int as int64;
     id: Int as uint32;
 
-    content: MoulderContent? = null;
+    content: MoulderContent? = null;    // TODO: think about content_update timestamp
     nextItemIndex: Int as uint64 = 0;
 
     init(owner: Address, channelId: Int, id: Int) {

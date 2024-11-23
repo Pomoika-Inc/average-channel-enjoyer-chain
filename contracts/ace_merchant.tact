@@ -1,4 +1,5 @@
 import "@stdlib/deploy";
+import "@stdlib/stoppable";
 import "./ace_moulder";
 import "./utils";
 
@@ -12,7 +13,7 @@ struct MerchantInfo {
 }
 
 /** Sells goods to customers */
-contract AceMerchant with Deployable, Adminable {
+contract AceMerchant with Deployable, Adminable, Resumable {
     owner: Address;
     admin: Address? = null;
     stopped: Bool = true;
@@ -41,13 +42,16 @@ contract AceMerchant with Deployable, Adminable {
     }
 
     receive(msg: StartSales) {
+        self.requireStopped();
         self.requireAdmin();
         self.stopped = false;
         
         // TODO: notification to owner that moulder's approve is needed
+        self.sendExcessessToAdmin(msg.queryId);
     }
 
     receive(msg: CancelSales) {
+        self.requireNotStopped();
         self.requireAdmin();
         self.stopped = true;
         
