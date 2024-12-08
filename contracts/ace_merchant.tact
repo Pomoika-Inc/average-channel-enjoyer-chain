@@ -12,6 +12,27 @@ struct MerchantInfo {
     quantity: Int as uint32;
 }
 
+message StartSales {
+    queryId: Int as uint64;
+}
+
+message CancelSales {
+    queryId: Int as uint64;
+}
+
+message SetPriceTag {
+    queryId: Int as uint64;
+    price: Int as coins;
+    quantity: Int as uint32;
+}
+
+message BuyRequest {
+    queryId: Int as uint64;
+    amount: Int as coins;
+    quantity: Int as uint32;
+    buyer: Address;
+}
+
 /** Sells goods to customers */
 contract AceMerchant with Deployable, Adminable, Resumable {
     owner: Address;
@@ -24,10 +45,14 @@ contract AceMerchant with Deployable, Adminable, Resumable {
     price: Int as coins = 0;
     quantity: Int as uint32 = 0;
 
+    moulder: Address;
+
     init(owner: Address, channelId: Int, id: Int) {
         self.owner = owner;
         self.channelId = channelId;
         self.id = id;
+
+        self.moulder = contractAddress(initOf AceMoulder(owner, channelId, id));
     }
 
     receive(msg: SetPriceTag) {
@@ -63,6 +88,30 @@ contract AceMerchant with Deployable, Adminable, Resumable {
             value: context().value,
             mode: SendIgnoreErrors 
         });
+    }
+
+    receive(msg: BuyRequest) {
+        self.requireNotStopped();
+        require(msg.amount / msg.quantity == self.price, "Wrong amount of jettons");
+        require(sender() == contractAddress(initOf AceWallet(msg.buyer, contractAddress(initOf AceMinter(self.owner, self.channelId)))), 
+            ERROR_UNKNOWN_SENDER);
+
+        send(SendParameters{
+            to: self.moulder,
+            body: Mould{
+                queryId: msg.queryId,
+                receiver: msg.buyer,
+                price: self.price,
+                quantity: msg.quantity,
+                maxQuantity: self.quantity
+            }.toCell(),
+            value: context().value - GAS_CONSUMPTION,
+            mode: SendBounceIfActionFail
+        });
+    }
+
+    bounced(msg: bounced<Mould>) {
+        //TODO: return jettons to the buyer
     }
 
     get fun merchantInfo(): MerchantInfo {
