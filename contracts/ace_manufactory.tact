@@ -10,6 +10,10 @@ struct ManufactoryInfo {
     mouldersCount: Int as uint32;
 }
 
+message CreateMoulder {
+    queryId: Int as uint64;
+}
+
 /** Channel's goods' templates creator */ 
 contract AceManufactory with Deployable, Adminable {
     owner: Address;
@@ -29,10 +33,9 @@ contract AceManufactory with Deployable, Adminable {
         let value = calculateMsgValue(myBalance(), context().value) / 2;
         // Check if there are enough funds to create a new moulder and merchant
         require(value - MIN_TON_FOR_STORAGE >= 0, ERROR_NOT_ENOUGH_FUNDS);
-        let myAddress = myAddress();
 
-        let moulder = initOf AceMoulder(myAddress, self.channelId, self.nextMoulderIndex);
-        let merchant = initOf AceMerchant(myAddress, self.channelId, self.nextMoulderIndex);
+        let moulder = initOf AceMoulder(self.owner, self.channelId, self.nextMoulderIndex);
+        let merchant = initOf AceMerchant(self.owner, self.channelId, self.nextMoulderIndex);
 
         send(SendParameters{
             to: contractAddress(moulder),
@@ -59,23 +62,6 @@ contract AceManufactory with Deployable, Adminable {
         });
 
         self.nextMoulderIndex += 1;
-    }
-
-    receive(msg: SwitchMoulderState) {
-        require(msg.moulderId < self.nextMoulderIndex, "Moulder doesn't exist");
-        self.requireOwner();
-
-        let value = (context().value - GAS_CONSUMPTION);
-        require(value > 0, ERROR_NOT_ENOUGH_FUNDS);
-
-        let moulder = contractAddress(initOf AceMoulder(myAddress(), self.channelId, msg.moulderId));
-
-        send(SendParameters{
-            to: moulder,
-            body: msg.target ? RESUME_COMMENT : STOP_COMMENT,
-            value: value,
-            mode: SendIgnoreErrors
-        });
     }
 
     get fun manufactoryInfo(): ManufactoryInfo {

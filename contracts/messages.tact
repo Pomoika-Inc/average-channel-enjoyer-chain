@@ -1,12 +1,3 @@
-
-message InternalAdd {
-    queryId: Int as uint64;
-    amount: Int as coins;
-    origin: Address;
-    responseDestination: Address;
-    forwardContent: String?;
-}
-
 message Excesses {
     queryId: Int as uint64;
 }
@@ -16,50 +7,42 @@ message SetAdmin {
     admin: Address;
 }
 
-// Manufactory
-message CreateMoulder {
+// Minter
+message InternalAdd {
     queryId: Int as uint64;
+    amount: Int as coins;
+    origin: Address;
+    responseDestination: Address;
+    forwardContent: String?;
 }
 
-message SwitchMoulderState {
+message Burn {
     queryId: Int as uint64;
+    owner: Address;
+    buyer: Address;
+
+    channelId: Int as int64;
     moulderId: Int as uint32;
-    target: Bool;
+
+    startIndex: Int as uint32;
+    quantity: Int as uint32;
+    price: Int as coins;
+
+    content: MoulderContent;
 }
 
 // Moulder
+
 struct MoulderContent {
     name: String;
     description: String;
     imageUrl: String;
 }
 
-message SetContent {
-    queryId: Int as uint64;
-    content: MoulderContent;
-}
-
-message DisableMoulder {
-    queryId: Int as uint64;
-}
-
 message Mould {
     queryId: Int as uint64;
     receiver: Address;
-    responseDestination: Address;
-}
-
-// Merchant
-message SetPriceTag {
-    queryId: Int as uint64;
-    price: Int as coins;
     quantity: Int as uint32;
-}
-
-message StartSales {
-    queryId: Int as uint64;
-}
-
-message CancelSales {
-    queryId: Int as uint64;
+    price: Int as coins;
+    maxQuantity: Int as uint32;
 }

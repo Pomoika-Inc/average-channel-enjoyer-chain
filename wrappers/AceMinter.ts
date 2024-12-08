@@ -1,1 +1,1 @@
-export * from '../build/AceMinter/tact_AceMinter';
+export * from '../build/AceManufactory/tact_AceMinter';
