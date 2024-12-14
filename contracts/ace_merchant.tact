@@ -34,8 +34,9 @@ message BuyRequest {
 }
 
 /** Sells goods to customers */
-contract AceMerchant with Deployable, Adminable, Resumable {
+contract AceMerchant with Deployable, Maintainable, Adminable, Resumable {
     owner: Address;
+    creator: Address;
     admin: Address? = null;
     stopped: Bool = true;
 
@@ -52,6 +53,7 @@ contract AceMerchant with Deployable, Adminable, Resumable {
         self.channelId = channelId;
         self.id = id;
 
+        self.creator = contractAddress(initOf AceManufactory(owner, channelId));
         self.moulder = contractAddress(initOf AceMoulder(owner, channelId, id));
     }
 

@@ -3,7 +3,7 @@ import "@stdlib/ownable";
 import "./messages";
 import "./utils";
 
-contract AceWallet with Deployable, Ownable {
+contract AceWallet with Deployable, Maintainable, Ownable {
     owner: Address;
     minter: Address;
     balance: Int as coins = 0;
@@ -43,9 +43,5 @@ contract AceWallet with Deployable, Ownable {
 
     get fun jetton_balance(): Int {
         return self.balance;
-    }
-
-    get fun balance(): Int {
-        return myBalance();
     }
 }

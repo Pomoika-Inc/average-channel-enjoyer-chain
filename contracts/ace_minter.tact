@@ -24,7 +24,7 @@ message Mint {
     rewarded: Address;
 }
 
-contract AceMinter with Deployable, Ownable {
+contract AceMinter with Deployable, Maintainable, Ownable {
     owner: Address;
     channelId: Int as int64;
     totalSupply: Int as coins = 0;
@@ -77,9 +77,5 @@ contract AceMinter with Deployable, Ownable {
             jetton_content: self.data.toCell(),
             jetton_wallet_code: initOf AceWallet(self.owner, myAddress()).code
         };
-    }
-
-    get fun balance(): Int {
-        return myBalance();
     }
 }

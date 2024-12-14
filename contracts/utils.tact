@@ -15,13 +15,17 @@ const RESUME_COMMENT: Cell = "Resume".asComment();
 const STOP_COMMENT: Cell = "Stop".asComment();
 
 fun calculateMsgValue(balance: Int, msgCoins: Int): Int {
+    return calculateMsgValueWithGas(balance, msgCoins, GAS_CONSUMPTION);
+}
+
+fun calculateMsgValueWithGas(balance: Int, msgCoins: Int, gasConsumption: Int): Int {
     dump(balance);
     dump(msgCoins);
     let balanceBefore: Int = balance - msgCoins;
     dump(balanceBefore);
     let storageFee: Int = MIN_TON_FOR_STORAGE - balanceBefore;
     dump(storageFee);
-    msgCoins -= storageFee + GAS_CONSUMPTION;
+    msgCoins -= storageFee + gasConsumption;
     dump(msgCoins);
 
     return msgCoins;
@@ -30,10 +34,12 @@ fun calculateMsgValue(balance: Int, msgCoins: Int): Int {
 
 trait Adminable with Ownable {
     owner: Address;
+    creator: Address;
     admin: Address?;
 
     receive(msg: SetAdmin) {
-        self.requireOwner();
+        let sender = sender();
+        require(sender == self.creator || sender == self.owner, ERROR_UNKNOWN_SENDER);
         self.admin = msg.admin;
     }
 
@@ -53,5 +59,12 @@ trait Adminable with Ownable {
                 mode: SendIgnoreErrors
             });
         }
+    }
+}
+
+trait Maintainable {
+
+    get fun balance(): Int {
+        return myBalance();
     }
 }

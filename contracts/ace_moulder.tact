@@ -24,8 +24,9 @@ message DisableMoulder {
 }
 
 /** Creates goods for customers */
-contract AceMoulder with Deployable, Adminable, Resumable {
+contract AceMoulder with Deployable, Maintainable, Adminable, Resumable {
     owner: Address;
+    creator: Address;
     admin: Address? = null;
     stopped: Bool = true;
 
@@ -41,6 +42,7 @@ contract AceMoulder with Deployable, Adminable, Resumable {
         self.channelId = channelId;
         self.id = id;
 
+        self.creator = contractAddress(initOf AceManufactory(owner, channelId));
         self.merchant = contractAddress(initOf AceMerchant(owner, channelId, id));
     }
 

@@ -15,8 +15,9 @@ message CreateMoulder {
 }
 
 /** Channel's goods' templates creator */ 
-contract AceManufactory with Deployable, Adminable {
+contract AceManufactory with Deployable, Maintainable, Adminable {
     owner: Address;
+    creator: Address;
     admin: Address? = null;
     channelId: Int as int64;
 
@@ -24,15 +25,16 @@ contract AceManufactory with Deployable, Adminable {
 
     init(owner: Address, channelId: Int) {
         self.owner = owner;
+        self.creator = owner;
         self.channelId = channelId;
     }
 
     receive(msg: CreateMoulder) {
         self.requireAdmin();
 
-        let value = calculateMsgValue(myBalance(), context().value) / 2;
+        let value = calculateMsgValueWithGas(myBalance(), context().value, GAS_CONSUMPTION * 3) / 2;
         // Check if there are enough funds to create a new moulder and merchant
-        require(value - MIN_TON_FOR_STORAGE >= 0, ERROR_NOT_ENOUGH_FUNDS);
+        require(value - MIN_TON_FOR_STORAGE - GAS_CONSUMPTION * 4 >= 0, ERROR_NOT_ENOUGH_FUNDS);
 
         let moulder = initOf AceMoulder(self.owner, self.channelId, self.nextMoulderIndex);
         let merchant = initOf AceMerchant(self.owner, self.channelId, self.nextMoulderIndex);
