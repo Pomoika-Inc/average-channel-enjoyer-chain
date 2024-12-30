@@ -573,10 +573,10 @@
   dependencies:
     "@nowarp/misti" "~0.6.1"
 
-"@nowarp/misti@^0.6.1", "@nowarp/misti@~0.6.1":
-  version "0.6.1"
-  resolved "https://registry.yarnpkg.com/@nowarp/misti/-/misti-0.6.1.tgz#f90696780e0c05fe6fd6d7aef09fd9d5f11ac4e7"
-  integrity sha512-cKr4VjLnmKUi/mKfce3gpKK7YwMeIvyV5s5vFve4hGpoWrmYQQHskKZKGDKu0rPrGXpv5FhI17M0hvWVoGlCAQ==
+"@nowarp/misti@^0.6.2", "@nowarp/misti@~0.6.1":
+  version "0.6.2"
+  resolved "https://registry.yarnpkg.com/@nowarp/misti/-/misti-0.6.2.tgz#7cece044430adf65aa224446566d2ff5c6015353"
+  integrity sha512-nvuOx9vCndbDsWd2/MqbFMp2uOIMOAwWiM/lKYyOi7Xl7r2yqhFY2bD+4Qiy81g3okojUXRf6+wFT0gxF8hZpw==
   dependencies:
     "@nowarp/souffle" "^0.1.2"
     "@tact-lang/compiler" "~1.5.1"
