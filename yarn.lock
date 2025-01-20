@@ -773,10 +773,10 @@
   resolved "https://registry.yarnpkg.com/@ton/sandbox/-/sandbox-0.23.0.tgz#c3b6ee0b9c057650a32d0c9ebf770a77e0832421"
   integrity sha512-V0PfjefTJbpBvsE1b5851LyuZlOXuBZnvxtCKrvK/wDlw348dCnUJuBvWuApZ5RGXq36xJ07XBoYl6sMuS0Xug==
 
-"@ton/test-utils@^0.4.2":
-  version "0.4.2"
-  resolved "https://registry.yarnpkg.com/@ton/test-utils/-/test-utils-0.4.2.tgz#965429aaf3258a49cc8ba0ef6623867f2c8b8e27"
-  integrity sha512-fthY8Nrlmy8jnOl/vx6yjeKzzu62ZXMe7ej9Xg7rb4d3511V7dVQK+nw4YLSW5+dD/6WT03dFuNZXnuMYy5fHw==
+"@ton/test-utils@^0.5.0":
+  version "0.5.0"
+  resolved "https://registry.yarnpkg.com/@ton/test-utils/-/test-utils-0.5.0.tgz#ca28fa8bba7c927db05074920481abf058e3c261"
+  integrity sha512-cwP8xMia3mW9W5KQkswcEA18GR1WwoTdJXKyPNiaxqx8QxCVvzzlqNj7dq4abz10HakLStuKySyMWOa4pwMR8w==
   dependencies:
     node-inspect-extracted "^2.0.0"
 
