@@ -566,14 +566,14 @@
     multiformats "^9.5.4"
     murmurhash3js-revisited "^3.0.0"
 
-"@nowarp/blueprint-misti@^0.6.0":
-  version "0.6.0"
-  resolved "https://registry.yarnpkg.com/@nowarp/blueprint-misti/-/blueprint-misti-0.6.0.tgz#11d2656899d7cfa6ff5c8887bb756649d018aa9b"
-  integrity sha512-RFohwKcpFdrpeqvJpu4l5+d9UPSJQBpkst6D+sqmeydgBrr21CxnN5uR6CArvdSvB9XMNCRXmBUa84SIZvYgnQ==
+"@nowarp/blueprint-misti@^0.7.0":
+  version "0.7.0"
+  resolved "https://registry.yarnpkg.com/@nowarp/blueprint-misti/-/blueprint-misti-0.7.0.tgz#4ba746cf01da33664239993abe935d6a3febc2b9"
+  integrity sha512-qcUPYJvCBPShvy9S4Jh/eZroDh57K+xlvrjsF2OJOq1orv0D+oT6yOBk9c/QeSgplDdHCRdOrOAI3mS+W8VwUw==
   dependencies:
-    "@nowarp/misti" "~0.6.1"
+    "@nowarp/misti" "~0.7.1"
 
-"@nowarp/misti@^0.6.2", "@nowarp/misti@~0.6.1":
+"@nowarp/misti@^0.6.2":
   version "0.6.2"
   resolved "https://registry.yarnpkg.com/@nowarp/misti/-/misti-0.6.2.tgz#7cece044430adf65aa224446566d2ff5c6015353"
   integrity sha512-nvuOx9vCndbDsWd2/MqbFMp2uOIMOAwWiM/lKYyOi7Xl7r2yqhFY2bD+4Qiy81g3okojUXRf6+wFT0gxF8hZpw==
@@ -590,6 +590,23 @@
     ignore "^6.0.2"
     json-bigint "^1.0.0"
     ohm-js "^17.1.0"
+    zod "^3.22.4"
+
+"@nowarp/misti@~0.7.1":
+  version "0.7.1"
+  resolved "https://registry.yarnpkg.com/@nowarp/misti/-/misti-0.7.1.tgz#f78b13db27854199a1a3743e78a16bba78d9da2a"
+  integrity sha512-cgVq1p8ASFH4GTn1/h7ECn/bR5x0e/2L0zuTE9nUTjXsEJNaqXa2xfM24IlhI6D1O+EsDSOG2cqGbCIohIu3qw==
+  dependencies:
+    "@nowarp/souffle" "^0.1.2"
+    "@tact-lang/compiler" "~1.6.1"
+    "@types/benchmark" "^2.1.5"
+    "@types/fs-extra" "^11.0.4"
+    "@types/json-bigint" "^1.0.4"
+    benchmark "^2.1.4"
+    commander "^12.0.0"
+    fs-extra "^11.2.0"
+    ignore "^6.0.2"
+    json-bigint "^1.0.0"
     zod "^3.22.4"
 
 "@nowarp/souffle@^0.1.2":
@@ -689,10 +706,35 @@
     prando "^6.0.1"
     zod "^3.22.4"
 
+"@tact-lang/compiler@~1.6.1":
+  version "1.6.2"
+  resolved "https://registry.yarnpkg.com/@tact-lang/compiler/-/compiler-1.6.2.tgz#a949a9099e4014b64148d6323826b8b8e8085d05"
+  integrity sha512-Qo8ooKWxLWy6o1ePdiyCo1+hdaX5rm1qoUs+S/L9R+wV7SpODYM1dHtKE3RkvyuItnBsl9WokgnkWzlC4qnMVQ==
+  dependencies:
+    "@tact-lang/opcode" "^0.3.0"
+    "@ton/core" "0.60.1"
+    "@ton/crypto" "^3.2.0"
+    "@tonstudio/parser-runtime" "^0.0.1"
+    blockstore-core "1.0.5"
+    change-case "^4.1.2"
+    ipfs-unixfs-importer "9.0.10"
+    json-bigint "^1.0.0"
+    ohm-js "^17.1.0"
+    path-normalize "^6.0.13"
+    zod "^3.22.4"
+
 "@tact-lang/opcode@^0.0.16":
   version "0.0.16"
   resolved "https://registry.yarnpkg.com/@tact-lang/opcode/-/opcode-0.0.16.tgz#cc9e4117ce706d8bb6e054a520bab719f70adf96"
   integrity sha512-YJTUjoDOy+e+FHHppJiF+uWJ2IMjVknB9VQ5n78pknCE129DazCb/nFXnw0wVRDVcn8Tn59ky+pmjiQjQOjEbw==
+
+"@tact-lang/opcode@^0.3.0":
+  version "0.3.1"
+  resolved "https://registry.yarnpkg.com/@tact-lang/opcode/-/opcode-0.3.1.tgz#bd9c7b10771f7a100fe2e5e5f18b33350225dc96"
+  integrity sha512-DfLGz59yl0PPnqFnFzkwr20NNspe4ocZJlBgyTiikGxpS5932wE7Jb9tcKpLqVKzR0TFiqBK0RbOTHM3e6qCRA==
+  dependencies:
+    "@ton/core" "^0.60.0"
+    "@ton/crypto" "^3.3.0"
 
 "@ton-api/client@^0.2.0":
   version "0.2.0"
@@ -745,7 +787,7 @@
   dependencies:
     symbol.inspect "1.0.1"
 
-"@ton/core@~0":
+"@ton/core@0.60.1", "@ton/core@^0.60.0", "@ton/core@~0":
   version "0.60.1"
   resolved "https://registry.yarnpkg.com/@ton/core/-/core-0.60.1.tgz#cc9a62fb308d7597b1217dc8e44c7e2dcc0aceaa"
   integrity sha512-8FwybYbfkk57C3l9gvnlRhRBHbLYmeu0LbB1z9N+dhDz0Z+FJW8w0TJlks8CgHrAFxsT3FlR2LsqFnsauMp38w==
@@ -766,7 +808,7 @@
   dependencies:
     jssha "3.2.0"
 
-"@ton/crypto@^3.2.0":
+"@ton/crypto@^3.2.0", "@ton/crypto@^3.3.0":
   version "3.3.0"
   resolved "https://registry.yarnpkg.com/@ton/crypto/-/crypto-3.3.0.tgz#019103df6540fbc1d8102979b4587bc85ff9779e"
   integrity sha512-/A6CYGgA/H36OZ9BbTaGerKtzWp50rg67ZCH2oIjV1NcrBaCK9Z343M+CxedvM7Haf3f/Ee9EhxyeTp0GKMUpA==
@@ -835,6 +877,11 @@
     "@tonconnect/isomorphic-eventsource" "^0.0.1"
     "@tonconnect/isomorphic-fetch" "^0.0.2"
     "@tonconnect/protocol" "^2.2.5"
+
+"@tonstudio/parser-runtime@^0.0.1":
+  version "0.0.1"
+  resolved "https://registry.yarnpkg.com/@tonstudio/parser-runtime/-/parser-runtime-0.0.1.tgz#469955fb7ea354d4fadaa5964359b11fd17f926b"
+  integrity sha512-5s4fLkXWxa4SAd7QGGvJXe13GakEo0J3VF5dUI/i3A//bGZxMwCp1FcnbErpNs3y0LcAZoXE5FCUnDowDQptqw==
 
 "@tsconfig/node10@^1.0.7":
   version "1.0.11"
