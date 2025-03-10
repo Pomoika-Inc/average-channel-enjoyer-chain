@@ -573,26 +573,7 @@
   dependencies:
     "@nowarp/misti" "~0.7.1"
 
-"@nowarp/misti@^0.6.2":
-  version "0.6.2"
-  resolved "https://registry.yarnpkg.com/@nowarp/misti/-/misti-0.6.2.tgz#7cece044430adf65aa224446566d2ff5c6015353"
-  integrity sha512-nvuOx9vCndbDsWd2/MqbFMp2uOIMOAwWiM/lKYyOi7Xl7r2yqhFY2bD+4Qiy81g3okojUXRf6+wFT0gxF8hZpw==
-  dependencies:
-    "@nowarp/souffle" "^0.1.2"
-    "@tact-lang/compiler" "~1.5.1"
-    "@ton/core" "~0.59.0"
-    "@types/benchmark" "^2.1.5"
-    "@types/fs-extra" "^11.0.4"
-    "@types/json-bigint" "^1.0.4"
-    benchmark "^2.1.4"
-    commander "^12.0.0"
-    fs-extra "^11.2.0"
-    ignore "^6.0.2"
-    json-bigint "^1.0.0"
-    ohm-js "^17.1.0"
-    zod "^3.22.4"
-
-"@nowarp/misti@~0.7.1":
+"@nowarp/misti@^0.7.1", "@nowarp/misti@~0.7.1":
   version "0.7.1"
   resolved "https://registry.yarnpkg.com/@nowarp/misti/-/misti-0.7.1.tgz#f78b13db27854199a1a3743e78a16bba78d9da2a"
   integrity sha512-cgVq1p8ASFH4GTn1/h7ECn/bR5x0e/2L0zuTE9nUTjXsEJNaqXa2xfM24IlhI6D1O+EsDSOG2cqGbCIohIu3qw==
@@ -686,7 +667,7 @@
   dependencies:
     "@sinonjs/commons" "^3.0.0"
 
-"@tact-lang/compiler@1.5.4", "@tact-lang/compiler@^1.4.0", "@tact-lang/compiler@~1.5.1":
+"@tact-lang/compiler@1.5.4":
   version "1.5.4"
   resolved "https://registry.yarnpkg.com/@tact-lang/compiler/-/compiler-1.5.4.tgz#c1addbdde51f26cc2358f08e276eb735c4103408"
   integrity sha512-r47LoKG458EbFoAz01AT77J7ymhDr1soBRZWZayEuBLWkxMRuK8IKWZb5hiQH1u8sCOankNtJjtVbxXmsb8SdA==
@@ -706,7 +687,7 @@
     prando "^6.0.1"
     zod "^3.22.4"
 
-"@tact-lang/compiler@~1.6.1":
+"@tact-lang/compiler@^1.4.0", "@tact-lang/compiler@~1.6.1":
   version "1.6.2"
   resolved "https://registry.yarnpkg.com/@tact-lang/compiler/-/compiler-1.6.2.tgz#a949a9099e4014b64148d6323826b8b8e8085d05"
   integrity sha512-Qo8ooKWxLWy6o1ePdiyCo1+hdaX5rm1qoUs+S/L9R+wV7SpODYM1dHtKE3RkvyuItnBsl9WokgnkWzlC4qnMVQ==
@@ -791,13 +772,6 @@
   version "0.60.1"
   resolved "https://registry.yarnpkg.com/@ton/core/-/core-0.60.1.tgz#cc9a62fb308d7597b1217dc8e44c7e2dcc0aceaa"
   integrity sha512-8FwybYbfkk57C3l9gvnlRhRBHbLYmeu0LbB1z9N+dhDz0Z+FJW8w0TJlks8CgHrAFxsT3FlR2LsqFnsauMp38w==
-  dependencies:
-    symbol.inspect "1.0.1"
-
-"@ton/core@~0.59.0":
-  version "0.59.1"
-  resolved "https://registry.yarnpkg.com/@ton/core/-/core-0.59.1.tgz#fe568069ccdf2f4191da1eadc930076c0c012789"
-  integrity sha512-SxFBAvutYJaIllTkv82vbHTJhJI6NxzqUhi499CDEjJEZ9i6i9lHJiK2df4dlLAb/4SiWX6+QUzESkK4DEdnCw==
   dependencies:
     symbol.inspect "1.0.1"
 
