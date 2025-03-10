@@ -8,7 +8,7 @@
         "lint": "blueprint misti ./tact.config.json"
     },
     "devDependencies": {
-        "@nowarp/blueprint-misti": "^0.6.0",
+        "@nowarp/blueprint-misti": "^0.7.0",
         "@nowarp/misti": "^0.6.2",
         "@tact-lang/compiler": "1.5.4",
         "@ton/blueprint": "^0.27.0",
