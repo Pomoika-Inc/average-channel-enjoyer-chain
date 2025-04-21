@@ -573,14 +573,13 @@
   dependencies:
     "@nowarp/misti" "~0.7.1"
 
-"@nowarp/misti@^0.6.2":
-  version "0.6.2"
-  resolved "https://registry.yarnpkg.com/@nowarp/misti/-/misti-0.6.2.tgz#7cece044430adf65aa224446566d2ff5c6015353"
-  integrity sha512-nvuOx9vCndbDsWd2/MqbFMp2uOIMOAwWiM/lKYyOi7Xl7r2yqhFY2bD+4Qiy81g3okojUXRf6+wFT0gxF8hZpw==
+"@nowarp/misti@^0.8.1":
+  version "0.8.1"
+  resolved "https://registry.yarnpkg.com/@nowarp/misti/-/misti-0.8.1.tgz#adaf865bfb64be157073f9ace650ff80d5bba905"
+  integrity sha512-rd+3B3FUlucPhRtYpi2vLddDwrIUt3DVo4R3sn1urUeh8mlGMwgha/hJpKQ4M9Vn48cxXy+e/1isz4Wkidlvrg==
   dependencies:
     "@nowarp/souffle" "^0.1.2"
-    "@tact-lang/compiler" "~1.5.1"
-    "@ton/core" "~0.59.0"
+    "@tact-lang/compiler" "~1.6.6"
     "@types/benchmark" "^2.1.5"
     "@types/fs-extra" "^11.0.4"
     "@types/json-bigint" "^1.0.4"
@@ -589,7 +588,6 @@
     fs-extra "^11.2.0"
     ignore "^6.0.2"
     json-bigint "^1.0.0"
-    ohm-js "^17.1.0"
     zod "^3.22.4"
 
 "@nowarp/misti@~0.7.1":
@@ -686,7 +684,7 @@
   dependencies:
     "@sinonjs/commons" "^3.0.0"
 
-"@tact-lang/compiler@1.5.4", "@tact-lang/compiler@^1.4.0", "@tact-lang/compiler@~1.5.1":
+"@tact-lang/compiler@1.5.4":
   version "1.5.4"
   resolved "https://registry.yarnpkg.com/@tact-lang/compiler/-/compiler-1.5.4.tgz#c1addbdde51f26cc2358f08e276eb735c4103408"
   integrity sha512-r47LoKG458EbFoAz01AT77J7ymhDr1soBRZWZayEuBLWkxMRuK8IKWZb5hiQH1u8sCOankNtJjtVbxXmsb8SdA==
@@ -706,20 +704,17 @@
     prando "^6.0.1"
     zod "^3.22.4"
 
-"@tact-lang/compiler@~1.6.1":
-  version "1.6.2"
-  resolved "https://registry.yarnpkg.com/@tact-lang/compiler/-/compiler-1.6.2.tgz#a949a9099e4014b64148d6323826b8b8e8085d05"
-  integrity sha512-Qo8ooKWxLWy6o1ePdiyCo1+hdaX5rm1qoUs+S/L9R+wV7SpODYM1dHtKE3RkvyuItnBsl9WokgnkWzlC4qnMVQ==
+"@tact-lang/compiler@^1.4.0", "@tact-lang/compiler@~1.6.1", "@tact-lang/compiler@~1.6.6":
+  version "1.6.6"
+  resolved "https://registry.yarnpkg.com/@tact-lang/compiler/-/compiler-1.6.6.tgz#e6b2dad0ac8f9b5a7de089307ba9b642a1d75492"
+  integrity sha512-uBjUjlrDbB2NTPkMAtg/xhG0Ar5Uhnu09GVEkHoVkakgJHAO+ScMaRnPK69wGjEn9qCKKSPYjCyDflXFvi5DkQ==
   dependencies:
     "@tact-lang/opcode" "^0.3.0"
     "@ton/core" "0.60.1"
     "@ton/crypto" "^3.2.0"
     "@tonstudio/parser-runtime" "^0.0.1"
     blockstore-core "1.0.5"
-    change-case "^4.1.2"
     ipfs-unixfs-importer "9.0.10"
-    json-bigint "^1.0.0"
-    ohm-js "^17.1.0"
     path-normalize "^6.0.13"
     zod "^3.22.4"
 
@@ -791,13 +786,6 @@
   version "0.60.1"
   resolved "https://registry.yarnpkg.com/@ton/core/-/core-0.60.1.tgz#cc9a62fb308d7597b1217dc8e44c7e2dcc0aceaa"
   integrity sha512-8FwybYbfkk57C3l9gvnlRhRBHbLYmeu0LbB1z9N+dhDz0Z+FJW8w0TJlks8CgHrAFxsT3FlR2LsqFnsauMp38w==
-  dependencies:
-    symbol.inspect "1.0.1"
-
-"@ton/core@~0.59.0":
-  version "0.59.1"
-  resolved "https://registry.yarnpkg.com/@ton/core/-/core-0.59.1.tgz#fe568069ccdf2f4191da1eadc930076c0c012789"
-  integrity sha512-SxFBAvutYJaIllTkv82vbHTJhJI6NxzqUhi499CDEjJEZ9i6i9lHJiK2df4dlLAb/4SiWX6+QUzESkK4DEdnCw==
   dependencies:
     symbol.inspect "1.0.1"
 
