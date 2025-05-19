@@ -814,10 +814,10 @@
     jssha "3.2.0"
     tweetnacl "1.0.3"
 
-"@ton/sandbox@^0.29.0":
-  version "0.29.0"
-  resolved "https://registry.yarnpkg.com/@ton/sandbox/-/sandbox-0.29.0.tgz#af53e6d5eb066fcc7158997c15e16af93bd9d74e"
-  integrity sha512-Xl364A6XeH/vr2iG2MER1o0RWv2wP0kK/gbZkREPOd3bY2TRDcCwtnsFBsRfUQUi9/QHPCpNOz//guc5HhOw5g==
+"@ton/sandbox@^0.30.0":
+  version "0.30.0"
+  resolved "https://registry.yarnpkg.com/@ton/sandbox/-/sandbox-0.30.0.tgz#8af17d60bee83d8b9a7050516b4b3286e12e5445"
+  integrity sha512-fFqwZrMT0KVdWmc/GieBbV0xrs58bx+JUbcHTq/fGLP8dNAKqbnX9ddIT1jA0N8WFOIIAF9MDw0CeIc6h0C8tA==
 
 "@ton/test-utils@^0.6.0":
   version "0.6.0"
