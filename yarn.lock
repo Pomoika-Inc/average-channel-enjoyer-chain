@@ -782,10 +782,10 @@
   dependencies:
     table "^6.9.0"
 
-"@ton/test-utils@^0.6.0":
-  version "0.6.0"
-  resolved "https://registry.yarnpkg.com/@ton/test-utils/-/test-utils-0.6.0.tgz#09e519cf2a209d22c8fb55746321a3e851469d1a"
-  integrity sha512-cy1X6261BVVlsBS05Y4ch3ZfddxJr7BVSPnORUVHILU2XtJaqS9txneEQlKHmyF0NUtec3NrtQskRKgHYD2/Fg==
+"@ton/test-utils@^0.7.0":
+  version "0.7.0"
+  resolved "https://registry.yarnpkg.com/@ton/test-utils/-/test-utils-0.7.0.tgz#c70dd68f5155edfc68482ea1050fda73511f0c92"
+  integrity sha512-c0izUKncMqC+zKOHzILO1/l0gWKwCeEP1PtgtCvdPRiTE0WfDxeLEc1gMAl6DQOGeMoLD4Wv4HnR4R72v5Oagw==
   dependencies:
     node-inspect-extracted "^2.0.0"
 
