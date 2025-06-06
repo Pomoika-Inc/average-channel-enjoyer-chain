@@ -1,6 +1,7 @@
 import "@stdlib/deploy";
 import "@stdlib/ownable";
 import "@stdlib/stoppable";
+import "./ace_cargo";
 // import "./ace_merchant";
 import "./messages";
 import "./utils";
@@ -13,12 +14,23 @@ struct MoulderInfo{
     mouldedItems: Int as uint64;
 }
 
+message SetContent {
+    queryId: Int as uint64;
+    content: MoulderContent;
+}
+
+message DisableMoulder {
+    queryId: Int as uint64;
+}
+
 /** Creates goods for customers */
-contract AceMoulder with Deployable, Adminable, Resumable {
+contract AceMoulder with Deployable, Maintainable, Adminable, Resumable {
     owner: Address;
+    creator: Address;
     admin: Address? = null;
     stopped: Bool = true;
 
+    merchant: Address;
     channelId: Int as int64;
     id: Int as uint32;
 
@@ -29,6 +41,9 @@ contract AceMoulder with Deployable, Adminable, Resumable {
         self.owner = owner;
         self.channelId = channelId;
         self.id = id;
+
+        self.creator = contractAddress(initOf AceManufactory(owner, channelId));
+        self.merchant = contractAddress(initOf AceMerchant(owner, channelId, id));
     }
 
     receive(msg: SetContent) {
@@ -50,11 +65,29 @@ contract AceMoulder with Deployable, Adminable, Resumable {
     receive(msg: Mould) {
         self.requireNotStopped();
         self.requireMerchant();
-        // TODO
+
+        let nextItemIndexAfterMoulding = self.nextItemIndex + msg.quantity;
+        require(nextItemIndexAfterMoulding <= msg.maxQuantity, "Out of stock");
+
+        let cargo = initOf AceCargo(self.owner, msg.receiver, self.channelId, self.id, self.nextItemIndex, msg.quantity, msg.price, self.content!!);
+
+        send(SendParameters{
+            to: contractAddress(cargo),
+            body: SetAdmin{
+                queryId: msg.queryId,
+                admin: self.admin!!
+            }.toCell(),
+            value: context().value - GAS_CONSUMPTION,
+            mode: SendBounceIfActionFail,
+            code: cargo.code,
+            data: cargo.data
+        });
+
+        self.nextItemIndex = nextItemIndexAfterMoulding;
     }
 
     fun requireMerchant() {
-        require(sender() == contractAddress(initOf AceMerchant(self.owner, self.channelId, self.id)), ERROR_UNKNOWN_SENDER);
+        require(sender() == self.merchant, ERROR_UNKNOWN_SENDER);
     }
 
     get fun moulderInfo(): MoulderInfo {
