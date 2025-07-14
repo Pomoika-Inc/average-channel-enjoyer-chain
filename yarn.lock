@@ -566,37 +566,20 @@
     multiformats "^9.5.4"
     murmurhash3js-revisited "^3.0.0"
 
-"@nowarp/blueprint-misti@^0.7.0":
-  version "0.7.0"
-  resolved "https://registry.yarnpkg.com/@nowarp/blueprint-misti/-/blueprint-misti-0.7.0.tgz#4ba746cf01da33664239993abe935d6a3febc2b9"
-  integrity sha512-qcUPYJvCBPShvy9S4Jh/eZroDh57K+xlvrjsF2OJOq1orv0D+oT6yOBk9c/QeSgplDdHCRdOrOAI3mS+W8VwUw==
+"@nowarp/blueprint-misti@^0.9.0":
+  version "0.9.0"
+  resolved "https://registry.yarnpkg.com/@nowarp/blueprint-misti/-/blueprint-misti-0.9.0.tgz#d68a6a886888a9c5e0ffa19783783dcf336dcf98"
+  integrity sha512-B3mwDO5cX9CSx7hqkjsWW04K5nPSQDzToyK8Fs/1ua4ElL1xpE9mBXBzRytI9RT1N8BgUxjbgh26CUHMDrVcqA==
   dependencies:
-    "@nowarp/misti" "~0.7.1"
+    "@nowarp/misti" "~0.9.0"
 
-"@nowarp/misti@^0.9.0":
+"@nowarp/misti@^0.9.0", "@nowarp/misti@~0.9.0":
   version "0.9.0"
   resolved "https://registry.yarnpkg.com/@nowarp/misti/-/misti-0.9.0.tgz#214e9f44895699b5f77855cded22dc49a81d0cd9"
   integrity sha512-tx11xpa2ywk6/ZNgvUifHC6mp8eDm9YAnB1/6ZUc2vMC1hWQ8o8qIXPVs3KnNrI8fwbTCIxRFOV4omDPSwAp+g==
   dependencies:
     "@nowarp/souffle" "^0.1.2"
     "@tact-lang/compiler" "~1.6.7"
-    "@types/benchmark" "^2.1.5"
-    "@types/fs-extra" "^11.0.4"
-    "@types/json-bigint" "^1.0.4"
-    benchmark "^2.1.4"
-    commander "^12.0.0"
-    fs-extra "^11.2.0"
-    ignore "^6.0.2"
-    json-bigint "^1.0.0"
-    zod "^3.22.4"
-
-"@nowarp/misti@~0.7.1":
-  version "0.7.1"
-  resolved "https://registry.yarnpkg.com/@nowarp/misti/-/misti-0.7.1.tgz#f78b13db27854199a1a3743e78a16bba78d9da2a"
-  integrity sha512-cgVq1p8ASFH4GTn1/h7ECn/bR5x0e/2L0zuTE9nUTjXsEJNaqXa2xfM24IlhI6D1O+EsDSOG2cqGbCIohIu3qw==
-  dependencies:
-    "@nowarp/souffle" "^0.1.2"
-    "@tact-lang/compiler" "~1.6.1"
     "@types/benchmark" "^2.1.5"
     "@types/fs-extra" "^11.0.4"
     "@types/json-bigint" "^1.0.4"
@@ -684,7 +667,7 @@
   dependencies:
     "@sinonjs/commons" "^3.0.0"
 
-"@tact-lang/compiler@1.6.13", "@tact-lang/compiler@^1.4.0", "@tact-lang/compiler@~1.6.1", "@tact-lang/compiler@~1.6.7":
+"@tact-lang/compiler@1.6.13", "@tact-lang/compiler@^1.4.0", "@tact-lang/compiler@~1.6.7":
   version "1.6.13"
   resolved "https://registry.yarnpkg.com/@tact-lang/compiler/-/compiler-1.6.13.tgz#b2f7e6eb75b52fea052369d8ac34c061f63d5c99"
   integrity sha512-lrgT/kCgC+nuppB4zPSDCAcLQ6EauTJ3NEBX4prEBBRmJ8aexYAfFUfVayskZw96JrDjReNIhnD8dG/yU0Fk+w==
