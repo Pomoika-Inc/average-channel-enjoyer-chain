@@ -797,10 +797,10 @@
   dependencies:
     arg "^5.0.2"
 
-"@ton/ton@^15.3.0":
-  version "15.3.0"
-  resolved "https://registry.yarnpkg.com/@ton/ton/-/ton-15.3.0.tgz#868c8e605cab6a5be6878afe2a13792f04613561"
-  integrity sha512-kDuTbQH+OEc1JGChCEU6BoWhvTBXo6FoLUyNguUtH/u3rEypbnhuE+QAhid60jKeREzk4R54/KvyPopoo29/1w==
+"@ton/ton@^15.3.1":
+  version "15.3.1"
+  resolved "https://registry.yarnpkg.com/@ton/ton/-/ton-15.3.1.tgz#c20688b27eb8ce8474610843804a7599679c38a2"
+  integrity sha512-+UuvbE0o0VIU/0W90STO+emRIDr3Vs39LdbX5ySm/Ra+RQJSiH0KX6TDOFqWDmD2Wzk4/zw21KwSiZ6Xjk8zlw==
   dependencies:
     axios "^1.6.7"
     dataloader "^2.0.0"
