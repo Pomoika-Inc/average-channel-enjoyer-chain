@@ -10,9 +10,14 @@ struct ManufactoryInfo {
     mouldersCount: Int as uint32;
 }
 
+message CreateMoulder {
+    queryId: Int as uint64;
+}
+
 /** Channel's goods' templates creator */ 
-contract AceManufactory with Deployable, Adminable {
+contract AceManufactory with Deployable, Maintainable, Adminable {
     owner: Address;
+    creator: Address;
     admin: Address? = null;
     channelId: Int as int64;
 
@@ -20,19 +25,19 @@ contract AceManufactory with Deployable, Adminable {
 
     init(owner: Address, channelId: Int) {
         self.owner = owner;
+        self.creator = owner;
         self.channelId = channelId;
     }
 
     receive(msg: CreateMoulder) {
         self.requireAdmin();
 
-        let value = calculateMsgValue(myBalance(), context().value) / 2;
+        let value = calculateMsgValueWithGas(myBalance(), context().value, GAS_CONSUMPTION * 3) / 2;
         // Check if there are enough funds to create a new moulder and merchant
-        require(value - MIN_TON_FOR_STORAGE >= 0, ERROR_NOT_ENOUGH_FUNDS);
-        let myAddress = myAddress();
+        require(value - MIN_TON_FOR_STORAGE - GAS_CONSUMPTION * 4 >= 0, ERROR_NOT_ENOUGH_FUNDS);
 
-        let moulder = initOf AceMoulder(myAddress, self.channelId, self.nextMoulderIndex);
-        let merchant = initOf AceMerchant(myAddress, self.channelId, self.nextMoulderIndex);
+        let moulder = initOf AceMoulder(self.owner, self.channelId, self.nextMoulderIndex);
+        let merchant = initOf AceMerchant(self.owner, self.channelId, self.nextMoulderIndex);
 
         send(SendParameters{
             to: contractAddress(moulder),
@@ -59,23 +64,6 @@ contract AceManufactory with Deployable, Adminable {
         });
 
         self.nextMoulderIndex += 1;
-    }
-
-    receive(msg: SwitchMoulderState) {
-        require(msg.moulderId < self.nextMoulderIndex, "Moulder doesn't exist");
-        self.requireOwner();
-
-        let value = (context().value - GAS_CONSUMPTION);
-        require(value > 0, ERROR_NOT_ENOUGH_FUNDS);
-
-        let moulder = contractAddress(initOf AceMoulder(myAddress(), self.channelId, msg.moulderId));
-
-        send(SendParameters{
-            to: moulder,
-            body: msg.target ? RESUME_COMMENT : STOP_COMMENT,
-            value: value,
-            mode: SendIgnoreErrors
-        });
     }
 
     get fun manufactoryInfo(): ManufactoryInfo {
