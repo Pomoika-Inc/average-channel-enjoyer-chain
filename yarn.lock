@@ -783,10 +783,10 @@
     chalk "^4.1.2"
     table "^6.9.0"
 
-"@ton/test-utils@^0.11.0":
-  version "0.11.0"
-  resolved "https://registry.yarnpkg.com/@ton/test-utils/-/test-utils-0.11.0.tgz#002ec16ce585f930ebdca3c93d20cde8aea6bc30"
-  integrity sha512-GFYUGsNdT+0xNU62aG+RG605sGYoLqLTEpfmR5TR2RjDZm+noDA50Dp0ImWGXBhD74/RrMKPaJ6KvzFgLC4vNg==
+"@ton/test-utils@^0.12.0":
+  version "0.12.0"
+  resolved "https://registry.yarnpkg.com/@ton/test-utils/-/test-utils-0.12.0.tgz#98b6c58842c29da7d1cde4af82504ba0467fa4d3"
+  integrity sha512-SJ6y+213M8C8vDc64JYIu07nEjaYMMlm3pU/64UFINackGkxFFpgmHdmRH/IzFJ2zclC0Wnv7LKNlBIAReT4sQ==
   dependencies:
     node-inspect-extracted "^2.0.0"
 
