@@ -18,7 +18,13 @@ struct Metadata {
     jetton_wallet_code: Cell;
 }
 
-contract AceMinter with Deployable, Ownable {
+message Mint {
+    queryId: Int as uint64;
+    amount: Int as coins;
+    rewarded: Address;
+}
+
+contract AceMinter with Deployable, Maintainable, Ownable {
     owner: Address;
     channelId: Int as int64;
     totalSupply: Int as coins = 0;
@@ -55,6 +61,14 @@ contract AceMinter with Deployable, Ownable {
         // TODO: notify the owner
     }
 
+    receive(msg: Burn) {
+        let cargo = initOf AceCargo(self.owner, msg.buyer, self.channelId, msg.moulderId, msg.startIndex, msg.quantity, msg.price, msg.content);
+        require(context().sender == contractAddress(cargo), ERROR_UNKNOWN_SENDER);
+        self.totalSupply -= msg.price * msg.quantity;
+
+        // TODO: notify the owner?
+    }
+
     get fun jetton_data(): Metadata {
         return Metadata{
             total_supply: self.totalSupply,
@@ -64,14 +78,4 @@ contract AceMinter with Deployable, Ownable {
             jetton_wallet_code: initOf AceWallet(self.owner, myAddress()).code
         };
     }
-
-    get fun balance(): Int {
-        return myBalance();
-    }
-}
-
-message Mint {
-    queryId: Int as uint64;
-    amount: Int as coins;
-    rewarded: Address;
 }

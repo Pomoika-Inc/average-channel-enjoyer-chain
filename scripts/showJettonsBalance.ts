@@ -12,5 +12,6 @@ export async function run(provider: NetworkProvider, args: string[]) {
     const aceMinter = provider.open(await AceMinter.fromInit(provider.sender().address!!, channelId));
     const aceWallet = provider.open(await AceWallet.fromInit(userAddress, aceMinter.address));
 
+    console.log(`AceWallet address: ${aceWallet.address.toString()}`);
     console.log(`Balance: ${await aceWallet.getJettonBalance()}`);
 }

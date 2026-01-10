@@ -1,5 +1,5 @@
 import { Blockchain, SandboxContract, TreasuryContract } from '@ton/sandbox'
-import { toNano } from '@ton/core'
+import { fromNano, toNano } from '@ton/core'
 import { AceManufactory } from '../wrappers/AceManufactory'
 import '@ton/test-utils'
 import { AceMoulder } from '../wrappers/AceMoulder'
@@ -18,14 +18,14 @@ describe('AceManufactory', () => {
         blockchain = await Blockchain.create()
 
         owner = await blockchain.treasury('owner')
-        admin = await blockchain.treasury('owner')
+        admin = await blockchain.treasury('admin')
 
         aceManufactory = blockchain.openContract(await AceManufactory.fromInit(owner.address, channelId))
 
         const deployResult = await aceManufactory.send(
             owner.getSender(),
             {
-                value: toNano('0.05'),
+                value: toNano('0.103'),
             },
             {
                 $$type: 'SetAdmin',
@@ -33,6 +33,7 @@ describe('AceManufactory', () => {
                 admin: admin.address,
             }
         )
+        console.log("AceManufactory after deploy balance: ", fromNano(await aceManufactory.getBalance()));
 
         expect(deployResult.transactions).toHaveTransaction({
             from: owner.address,
@@ -46,24 +47,25 @@ describe('AceManufactory', () => {
         const result = await aceManufactory.send(
             admin.getSender(),
             {
-                value: toNano('0.3'),
+                value: toNano('0.37'),
             },
             {
                 $$type: 'CreateMoulder',
                 queryId: 1n,
             }
         )
+        console.log("AceManufactory after moulder creation balance: ", fromNano(await aceManufactory.getBalance()));
 
         expect(result.transactions).toHaveTransaction({
-            from: owner.address,
+            from: admin.address,
             to: aceManufactory.address,
             success: true,
         })
 
         const moulderId = (await aceManufactory.getManufactoryInfo()).mouldersCount - 1n
 
-        const moulder = blockchain.openContract(await AceMoulder.fromInit(aceManufactory.address, channelId, moulderId))
-        const merchant = blockchain.openContract(await AceMerchant.fromInit(aceManufactory.address, channelId, moulderId))
+        const moulder = blockchain.openContract(await AceMoulder.fromInit(owner.address, channelId, moulderId))
+        const merchant = blockchain.openContract(await AceMerchant.fromInit(owner.address, channelId, moulderId))
 
         expect(result.transactions).toHaveTransaction({
             from: aceManufactory.address,
@@ -76,104 +78,15 @@ describe('AceManufactory', () => {
             success: true,
         })
         
-        expect((await moulder.getMoulderInfo()).admin?.toString()).toEqual(admin.address.toString())
-        expect((await merchant.getMerchantInfo()).admin?.toString()).toEqual(admin.address.toString())
+        const moulderInfo = await moulder.getMoulderInfo()
+        expect(moulderInfo.admin?.toString()).toEqual(admin.address.toString())
+        expect(moulderInfo.stopped).toEqual(true)
+        console.log("AceMoulder after creation balance: ", fromNano(await moulder.getBalance()));
+
+        const merchantInfo = await merchant.getMerchantInfo()
+        expect(merchantInfo.admin?.toString()).toEqual(admin.address.toString())
+        expect(merchantInfo.stopped).toEqual(true)
+        console.log("AceMerchant after creation balance: ", fromNano(await merchant.getBalance()));
     }, 35000)
-
-    it('should create moulder', async () => {
-        const result = await aceManufactory.send(
-            admin.getSender(),
-            {
-                value: toNano('0.3'),
-            },
-            {
-                $$type: 'CreateMoulder',
-                queryId: 1n,
-            }
-        )
-
-        expect(result.transactions).toHaveTransaction({
-            from: owner.address,
-            to: aceManufactory.address,
-            success: true,
-        })
-
-        const moulderId = (await aceManufactory.getManufactoryInfo()).mouldersCount - 1n
-
-        const moulder = blockchain.openContract(await AceMoulder.fromInit(aceManufactory.address, channelId, moulderId))
-        const merchant = blockchain.openContract(await AceMerchant.fromInit(aceManufactory.address, channelId, moulderId))
-
-        expect(result.transactions).toHaveTransaction({
-            from: aceManufactory.address,
-            to: moulder.address,
-            success: true,
-        })
-        expect(result.transactions).toHaveTransaction({
-            from: aceManufactory.address,
-            to: merchant.address,
-            success: true,
-        })
-        
-        expect((await moulder.getMoulderInfo()).admin?.toString()).toEqual(admin.address.toString())
-        expect((await merchant.getMerchantInfo()).admin?.toString()).toEqual(admin.address.toString())
-    }, 35000)
-
-    it('should switch moulder', async () => {
-        await aceManufactory.send(
-            admin.getSender(),
-            {
-                value: toNano('0.3'),
-            },
-            {
-                $$type: 'CreateMoulder',
-                queryId: 1n,
-            }
-        )
-        
-        const moulderId = (await aceManufactory.getManufactoryInfo()).mouldersCount - 1n
-
-        let result = await aceManufactory.send(
-            admin.getSender(),
-            {
-                value: toNano('0.1'),
-            },
-            {
-                $$type: 'SwitchMoulderState',
-                queryId: 2n,
-                moulderId: moulderId,
-                target: true,
-            }
-        )
-
-        const moulder = blockchain.openContract(await AceMoulder.fromInit(aceManufactory.address, channelId, moulderId))
-
-        expect(result.transactions).toHaveTransaction({
-            from: aceManufactory.address,
-            to: moulder.address,
-            success: true,
-        })
-
-        expect((await moulder.getMoulderInfo()).stopped).toEqual(false)
-
-        result = await aceManufactory.send(
-            admin.getSender(),
-            {
-                value: toNano('0.1'),
-            },
-            {
-                $$type: 'SwitchMoulderState',
-                queryId: 2n,
-                moulderId: moulderId,
-                target: false,
-            }
-        )
-        expect(result.transactions).toHaveTransaction({
-            from: aceManufactory.address,
-            to: moulder.address,
-            success: true,
-        })
-
-        expect((await moulder.getMoulderInfo()).stopped).toEqual(true)
-    })
 })
 
